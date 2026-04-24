@@ -1,24 +1,22 @@
-#include "ui/main_window/MainWindow.h"
+#include "MainWindow.h"
+#include <QHBoxLayout>
+#include "../panels/DashboardPanel.h"
+#include "../panels/CommunicationPanel.h"
 
-#include <QDockWidget>
-#include <QTabWidget>
-
-#include "ui/panels/DashboardPanel.h"
-#include "ui/panels/CommunicationPanel.h"
-
-MainWindow::MainWindow(VehicleController* vehicleController,
-                       TelemetryService* telemetryService,
-                       QWidget* parent)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     setWindowTitle("GCS 2.0");
-    resize(1200, 720);
+    resize(1200, 700);
 
-    dashboardPanel_ = new DashboardPanel(vehicleController, telemetryService, this);
-    setCentralWidget(dashboardPanel_);
+    QWidget *central = new QWidget(this);
+    setCentralWidget(central);
 
-    communicationPanel_ = new CommunicationPanel(vehicleController, this);
-    auto* commDock = new QDockWidget("Communication", this);
-    commDock->setWidget(communicationPanel_);
-    addDockWidget(Qt::LeftDockWidgetArea, commDock);
+    QHBoxLayout *layout = new QHBoxLayout(central);
+
+    DashboardPanel *dashboard = new DashboardPanel(this);
+    CommunicationPanel *comm = new CommunicationPanel(this);
+
+    layout->addWidget(dashboard, 3);  // أكبر
+    layout->addWidget(comm, 1);       // أصغر
 }

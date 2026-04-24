@@ -2,24 +2,20 @@
 
 #include <QWidget>
 
-class QComboBox;
 class QPushButton;
-class VehicleController;
+class QLabel;
 
 class CommunicationPanel : public QWidget
 {
-    Q_OBJECT
-public:
-    explicit CommunicationPanel(VehicleController* vehicleController, QWidget* parent = nullptr);
+    Q_OBJECT   // ⚠️ مهم جدًا
 
-private slots:
-    void connectLink();
-    void disconnectLink();
+public:
+    explicit CommunicationPanel(QWidget *parent = nullptr);
+
+signals:
+    void connectClicked();
 
 private:
-    VehicleController* vehicleController_;
-    QComboBox* portCombo_;
-    QComboBox* baudCombo_;
-    QPushButton* connectButton_;
-    QPushButton* disconnectButton_;
+    QLabel *statusLabel;
+    QPushButton *connectButton;
 };

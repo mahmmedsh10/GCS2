@@ -1,6 +1,14 @@
-#include <iostream>
+#include <QApplication>
+#include <QMainWindow>
 
-int main() {
-    std::cout << "GCS 2.0 Starting..." << std::endl;
-    return 0;
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
+
+    QMainWindow window;
+    window.setWindowTitle("GCS 2.0");
+    window.resize(800, 600);
+    window.show();
+
+    return app.exec();
 }
