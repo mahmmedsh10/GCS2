@@ -1,0 +1,7 @@
+{
+  "app_name": "GCS2",
+  "default_baud_rate": 115200,
+  "default_port": "COM3",
+  "logs_directory": "./logs",
+  "missions_directory": "./missions"
+}
